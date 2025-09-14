@@ -31,11 +31,11 @@ A URL shortener service built with Java, Spring Boot and MariaDB persistence.
 │   Controller    │───▶│    Service      │───▶│   Repository    │
 │   (REST API)    │    │   (Business)    │    │   (Data)        │
 └─────────────────┘    └─────────────────┘    └─────────────────┘
-                                │                      │
-                       ┌─────────────────┐             │
-                       │ Circuit Breaker │             │
-                       │   (Resilience)  │             │
-                       └─────────────────┘             │
+                                                       │
+                                                       │
+                                                       │
+                                                       │
+                                                       │
                                                        │
                                               ┌─────────────────┐
                                               │    MariaDB      │
@@ -84,7 +84,7 @@ A URL shortener service built with Java, Spring Boot and MariaDB persistence.
 
 5. **Access the application**
    - API: http://localhost:8080
-   - http://localhost:8080/api/url/health
+   - Controller Health Check: http://localhost:8080/api/url/health
    - Health Check: http://localhost:8080/actuator/health
    - Metrics: http://localhost:8080/actuator/metrics
 
