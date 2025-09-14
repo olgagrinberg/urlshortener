@@ -1,15 +1,14 @@
 # Project: Url Shortener
 The challenge is to write a small Java program using the Spring Boot framework that meets the following specifications.
 Features:
-• Given a full URL, generate a shortened URL.
-• Given a previously generated shortened URL, provide the full (original) URL.
+- Given a full URL, generate a shortened URL.
+- Given a previously generated shortened URL, provide the full (original) URL.
 Constraints:
-• Not including the service URL (domain), a shortened URL should not exceed 10 characters.
-• If the shortened URL provided to the system does not match a previously generated URL, an error must be returned.
-• The system must be persistent, able to survive a reboot.
-o In other words, if I generate a shortened URL using the program,
-I should be able to close the program, restart it, and be able to obtain the previously shortened URL.
-• Two identical full URLs must result in the same shortened URL.
+- Not including the service URL (domain), a shortened URL should not exceed 10 characters.
+- If the shortened URL provided to the system does not match a previously generated URL, an error must be returned.
+- The system must be persistent, able to survive a reboot.
+- In other words, if I generate a shortened URL using the program, I should be able to close the program, restart it, and be able to obtain the previously shortened URL.
+- Two identical full URLs must result in the same shortened URL.
 
 # URL Shortener Microservice
 
@@ -21,8 +20,8 @@ A URL shortener service built with Java, Spring Boot and MariaDB persistence.
 # Features
 
 - **URL Shortening**: Generate short URLs with customizable length (max 10 characters)
-- **URL Expansion**: Retrieve original URLs from short codes
-- **Persistence**: MariaDB database with optimized indexing
+- **URL Expansion**: Retrieve original URLs from short urls
+- **Persistence**: MariaDB database 
 
 ## Architecture
 
