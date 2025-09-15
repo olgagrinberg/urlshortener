@@ -27,7 +27,7 @@ A URL shortener service built with Java, Spring Boot and MariaDB persistence.
 
 ```
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Controller    │───▶│    Service      │───▶│   Repository    │
+│   Controller    │──▶│    Service       │──▶│   Repository    │
 │   (REST API)    │    │   (Business)    │    │   (Data)        │
 └─────────────────┘    └─────────────────┘    └─────────────────┘
                                                        │
@@ -99,7 +99,7 @@ A URL shortener service built with Java, Spring Boot and MariaDB persistence.
 ```json
 {
   "id": null,
-  "fullUrl": "https://example.com/some/page10",
+  "fullUrl": "https://example.com/some/page",
   "shortUrl": "1JnA4Cgzvj",
   "error": null
 }
@@ -111,7 +111,7 @@ A URL shortener service built with Java, Spring Boot and MariaDB persistence.
 ```json
 {
   "id": null,
-  "fullUrl": "https://example.com/some/page10",
+  "fullUrl": "https://example.com/some/page",
   "shortUrl": "1JnA4Cgzvj",
   "error": null
 }
