@@ -3,6 +3,8 @@ package com.urlshortener.service;
 import com.urlshortener.entity.UrlMapping;
 import com.urlshortener.repository.UrlMappingRepository;
 import com.urlshortener.util.Base62Encoder;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.validator.routines.UrlValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,19 +14,19 @@ import org.springframework.stereotype.Service;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Service
+@Slf4j
+@RequiredArgsConstructor
 public class UrlShortenerService {
-    @Autowired
-    private UrlMappingRepository repository;
 
-    @Autowired
-    private Base62Encoder encoder;
+    private final UrlMappingRepository repository;
 
-    private static int SHORT_LEN = 10;
+
+    private final Base62Encoder encoder;
+
+    private static final int SHORT_LEN = 10;
 
     // Counter for generating unique IDs
     private final AtomicLong counter = new AtomicLong(System.currentTimeMillis());
-
-    private static final Logger logger = LoggerFactory.getLogger(UrlShortenerService.class);
 
     /**
      * Shortens a full URL
@@ -62,17 +64,18 @@ public class UrlShortenerService {
                     return urlMapping.getFullUrl();
                 })
                 .orElseThrow(() -> {
-                    logger.error("Short URL not found: {}", shortUrl);
+                    log.error("Short URL not found: {}", shortUrl);
                     return new IllegalArgumentException("Short URL not found");
                 });
     }
 
     private String generateShortUrl() {
-        String shortUrl = reduce(encoder.encode(counter.incrementAndGet()));
-        // avoid duplication
-        return repository.findByShortUrl(shortUrl).isPresent()
-                ? generateShortUrl()
-                : shortUrl;
+        String shortUrl;
+        do {
+            shortUrl = reduce(encoder.encode(counter.getAndAdd(1000)));
+        } while (repository.findByShortUrl(shortUrl).isPresent());
+
+        return shortUrl;
     }
 
     String reduce(String input) {

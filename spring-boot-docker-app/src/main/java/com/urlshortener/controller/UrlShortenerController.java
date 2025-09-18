@@ -3,10 +3,9 @@ package com.urlshortener.controller;
 import com.urlshortener.entity.UrlMapping;
 import com.urlshortener.service.UrlShortenerService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,12 +13,11 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/url")
 @CrossOrigin(origins = "*")
+@Slf4j
+@RequiredArgsConstructor
 public class UrlShortenerController {
 
-    private static final Logger logger = LoggerFactory.getLogger(UrlShortenerController.class);
-
-    @Autowired
-    private UrlShortenerService urlShortenerService;
+    private final UrlShortenerService urlShortenerService;
 
     @PostMapping("/shorten")
     public ResponseEntity<UrlMapping> shortenUrl(@Valid @RequestBody UrlMapping urlMapping) {
@@ -55,7 +53,7 @@ public class UrlShortenerController {
 
     @GetMapping("/health")
     public ResponseEntity<String> health() {
-        logger.info("Health check requested");
+        log.info("Health check requested");
         return ResponseEntity.ok("Application is running with Docker Compose integration!");
     }
 
@@ -64,7 +62,7 @@ public class UrlShortenerController {
         urlMapping.setError(errorMessage);
         HttpHeaders headers = new HttpHeaders();
         headers.add("X-Error-Message", errorMessage);
-        logger.error(errorMessage);
+        log.error(errorMessage);
         return ResponseEntity.badRequest().headers(headers).body(urlMapping);
     }
 }

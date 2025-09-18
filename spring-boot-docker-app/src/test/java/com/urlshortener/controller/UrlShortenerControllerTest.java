@@ -3,6 +3,7 @@ package com.urlshortener.controller;
 import com.urlshortener.entity.UrlMapping;
 import com.urlshortener.service.UrlShortenerService;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+//@Disabled
 public class UrlShortenerControllerTest {
 
     @InjectMocks

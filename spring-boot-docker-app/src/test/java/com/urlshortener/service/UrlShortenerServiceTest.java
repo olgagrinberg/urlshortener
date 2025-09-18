@@ -4,6 +4,7 @@ import com.urlshortener.entity.UrlMapping;
 import com.urlshortener.repository.UrlMappingRepository;
 import com.urlshortener.util.Base62Encoder;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;
 import java.util.Optional;
@@ -11,6 +12,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+//@Disabled
 public class UrlShortenerServiceTest {
 
     @InjectMocks
