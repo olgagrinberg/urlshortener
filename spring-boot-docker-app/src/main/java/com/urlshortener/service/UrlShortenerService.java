@@ -56,10 +56,7 @@ public class UrlShortenerService {
      */
     public String getFullUrl(String shortUrl) {
         return repository.findByShortUrl(shortUrl)
-                .map(urlMapping -> {
-                    repository.save(urlMapping);
-                    return urlMapping.getFullUrl();
-                })
+                .map(UrlMapping::getFullUrl)
                 .orElseThrow(() -> {
                     log.error("Short URL not found: {}", shortUrl);
                     return new IllegalArgumentException("Short URL not found");

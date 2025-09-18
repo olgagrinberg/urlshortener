@@ -80,7 +80,6 @@ public class UrlShortenerServiceTest {
         String result = service.getFullUrl(shortUrl);
 
         assertEquals("https://example.com/page", result);
-        verify(repository).save(mapping); // confirm access tracking
     }
 
     @Test
