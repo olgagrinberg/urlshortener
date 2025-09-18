@@ -70,7 +70,7 @@ public class UrlShortenerService {
         String shortUrl;
         do {
             shortUrl = reduce(encoder.encode(counter.getAndAdd(1000)));
-        } while (repository.findByShortUrl(shortUrl).isPresent());
+        } while (repository.existsByShortUrl(shortUrl));
 
         return shortUrl;
     }
